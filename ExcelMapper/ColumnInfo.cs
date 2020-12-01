@@ -231,6 +231,8 @@ namespace Ganss.Excel
                 v = SetProp(val, cell);
             else if (IsNullable && (val == null || (val is string s && s.Length == 0)))
                 v = null;
+            else if (PropertyType == typeof(Guid))
+                v = Guid.Parse(val.ToString());
             else
                 v = Convert.ChangeType(val, PropertyType, CultureInfo.InvariantCulture);
 
